@@ -89,9 +89,23 @@ class Search extends Component {
 
 * ES6 - The Right Parts
 * Advanced Asynchronous Programming
-* Rx.js
+* rx.js
 
 ## Testing
 
 * Jest supports snapshot testing! This makes it great for testing React
 * Unfortunately, Jest runs in Node, so we can't do JSX or ES6 modules
+* BUT, we can set NODE_ENV=test, and then have Babel pick up on that environment variable, and transpile the commonjs modules. (But why does this mean JSX will work?)
+* Jest snapshots are just JSON! So this means you can also use snapshots to test APIs, or anything that returns JSON
+* YOU SHOULD COMMIT SNAPSHOTS
+* Read up on 'mocking' for sign-in!
+* I assume that `yarn test` passes `NODE_ENV=test` by default?
+* `Enzyme.shallow()` is a wrapper on `renderer.create()` that will stub out all of the children components, but we need to tell Jest how to snapshot Enzyme components
+  * What Enzyme does is makes a snapshot where the child element is saved as just the component with the props passed in, and does not actually render the child component.
+* `Enzyme.render()` uses JSDOM, which will actually render the virtual DOM, but is super slow!
+* `Enzyme.static()` uses cheerio (sp?) which is great for web-scraping, but is super slow!
+
+## Flow
+
+* Typing in JS (without using TypeScript)!
+* It makes development slower, but it's one of the best ways to make a scalable architecture for your project.

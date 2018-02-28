@@ -1,25 +1,28 @@
 import React from 'react';
 import { render } from 'react-dom';
-// from React-Router!
-import { BrowserRouter, Route, Switch } from 'react-router-dom';
-import Landing from './Landing';
-import Search from './Search';
+import App from './App';
 
-const FourOhFour = () => <h1>404</h1>;
+// This is the entry point, so it couldn't be hot-reloaded if something had
+// changed! Therefore, we JUST have this as our entry point now, and even the
+// landing page code lives in App.jsx. This will also be important for things
+// like server-side-rendering.
 
-const App = () => (
-  <BrowserRouter>
-    <div className="app">
-      {/* exact means the exact path, not the path and any subpaths */}
-      {/* The route is now http://localhost:8080/#/ */}
-      {/* What is this /#/? The server is not set up correctly! This is a lazy way to make SPAs */}
-      <Switch>
-        <Route exact path="/" component={Landing} />
-        <Route path="/search" component={Search} />
-        <Route component={FourOhFour} />
-      </Switch>
-    </div>
-  </BrowserRouter>
-);
+// This is also the place where ONLY browser code will live because it won't be
+// in Node (that only gets the pieces, this is just rendering the app.)
 
-render(<App />, document.getElementById('app'));
+// Turn this into a function
+const renderApp = () => {
+  render(<App />, document.getElementById('app'));
+};
+
+// Only call it once
+renderApp();
+
+// If hot-module replacement is enabled (only in dev!). Then, every time that
+// App has changed, re-render the *entire* app. Everything else gets taken care
+// of by Babel. `module` comes from webpack
+if (module.hot) {
+  module.hot.accept('./App', () => {
+    renderApp();
+  });
+}
