@@ -1,3 +1,5 @@
+// @flow
+
 import React from 'react';
 import { render } from 'react-dom';
 import App from './App';
@@ -10,9 +12,15 @@ import App from './App';
 // This is also the place where ONLY browser code will live because it won't be
 // in Node (that only gets the pieces, this is just rendering the app.)
 
+const appContainer = document.getElementById('app');
+
+if (appContainer == null) {
+  throw new Error('No AppContainer element!');
+}
+
 // Turn this into a function
 const renderApp = () => {
-  render(<App />, document.getElementById('app'));
+  render(<App />, appContainer);
 };
 
 // Only call it once

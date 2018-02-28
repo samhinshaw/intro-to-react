@@ -1,8 +1,18 @@
+// @flow
+
 import React, { Component } from 'react';
 import ShowCard from './ShowCard';
 import preload from '../data.json';
 
-class Search extends Component {
+// type Props = {
+//   receiver: string
+// };
+
+type State = {
+  searchTerm: string
+};
+
+class Search extends Component<State> {
   // with `transform-class-properties`, we can drop the whole constuctor!!
   // constructor(props) {
   //   // This is annoying, but is required
@@ -23,7 +33,9 @@ class Search extends Component {
   };
   // arrow functions do not create new contexts when they are created!!
   // So `this` still refers to the parent context
-  handleSearchTermChange = event => {
+  handleSearchTermChange = (
+    event: SyntheticKeyboardEvent & { target: HTMLInputElement }
+  ) => {
     // DO NOT MODIFY STATE DIRECTLY
     // Use `setState()`
     this.setState({ searchTerm: event.target.value });

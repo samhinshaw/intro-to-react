@@ -1,3 +1,5 @@
+// @flow
+
 import React from 'react';
 // from React-Router!
 import { BrowserRouter, Route, Switch } from 'react-router-dom';

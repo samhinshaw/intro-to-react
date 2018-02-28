@@ -109,3 +109,9 @@ class Search extends Component {
 
 * Typing in JS (without using TypeScript)!
 * It makes development slower, but it's one of the best ways to make a scalable architecture for your project.
+
+* Because types are not valid JS, we need to transpile with Babel! Fortunately this is included in the React preset.
+* These specific browser types are included in Flow already! Check the flow docs at flowtype.org
+
+* Flow even does a ton of type inference for you! You just have to set types where it can't infer types.
+* Currently styled-components has bugs with Flow, so need to ignore styled-components, but then let Flow know that it's still there.
